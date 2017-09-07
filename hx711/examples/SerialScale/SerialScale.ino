@@ -1,13 +1,4 @@
-/* sample for digital weight scale of hx711, display with a HD44780 liquid crtstal monitor
- *
- * hardware design: syyyd
- * available at http://syyyd.taobao.com
- *
- * library design: Weihong Guan (@aguegu)
- * http://aguegu.net
- *
- * library host on
- * https://github.com/aguegu/Arduino
+/* sample for digital weight scale with HX711 and serial monitor
  */
 
 // Hx711.DOUT - pin #A1

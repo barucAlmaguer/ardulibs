@@ -3,6 +3,9 @@
  *
  *  Created on: Oct 31, 2012
  *      Author: agu
+ *
+ *  Modified on: Sep 07, 2017
+ *		Author: Baruc
  */
 
 #include "hx711.h"

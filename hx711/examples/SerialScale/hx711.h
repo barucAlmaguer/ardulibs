@@ -24,8 +24,8 @@ public:
 	virtual ~Hx711();
 	long getValue();
 	long averageValue();
-	void setOffset(float offset);
-	void setScale(float scale = 742.f);
+	void setOffset(float offset = -42449.76f);
+	void setScale(float scale = 0.0050922f);
   void setReadTimes(byte times);
 	float getGram();
 

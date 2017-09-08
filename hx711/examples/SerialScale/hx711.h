@@ -23,16 +23,18 @@ public:
 	Hx711(uint8_t pin_din, uint8_t pin_slk);
 	virtual ~Hx711();
 	long getValue();
-	long averageValue(byte times = 32);
-	void setOffset(long offset);
+	long averageValue();
+	void setOffset(float offset);
 	void setScale(float scale = 742.f);
+  void setReadTimes(byte times);
 	float getGram();
 
 private:
 	const uint8_t _pin_dout;
 	const uint8_t _pin_slk;
-	long _offset;
+	float _offset;
 	float _scale;
+  byte _read_times;
 };
 
 #endif /* HX711_H_ */

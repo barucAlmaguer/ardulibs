@@ -20,9 +20,8 @@ Hx711::Hx711(uint8_t pin_dout, uint8_t pin_slk) :
 	delayMicroseconds(100);
 	digitalWrite(_pin_slk, LOW);
 
-	averageValue();
-	this->setOffset(averageValue());
-	this->setScale();
+  setReadTimes(8);
+	averageValue(); //Lecturas iniciales para estabilizar sensor
 }
 
 Hx711::~Hx711()
@@ -30,15 +29,15 @@ Hx711::~Hx711()
 
 }
 
-long Hx711::averageValue(byte times)
+long Hx711::averageValue()
 {
 	long sum = 0;
-	for (byte i = 0; i < times; i++)
+	for (byte i = 0; i < _read_times; i++)
 	{
 		sum += getValue();
 	}
 
-	return sum / times;
+	return sum / _read_times;
 }
 
 long Hx711::getValue()
@@ -67,7 +66,7 @@ long Hx711::getValue()
 			| (uint32_t) data[0];
 }
 
-void Hx711::setOffset(long offset)
+void Hx711::setOffset(float offset)
 {
 	_offset = offset;
 }
@@ -79,6 +78,10 @@ void Hx711::setScale(float scale)
 
 float Hx711::getGram()
 {
-	long val = (averageValue() - _offset);
-	return (float) val / _scale;
+	long val = averageValue();
+	return (float) val * _scale + _offset;
+}
+
+void Hx711::setReadTimes(byte times){
+  _read_times = times > 0 ? times : 1;
 }

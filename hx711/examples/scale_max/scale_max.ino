@@ -1,11 +1,7 @@
-/* sample for digital weight scale with HX711 and serial monitor
- */
-
 // Hx711.DOUT - pin #A1
 // Hx711.SCK - pin #A0
 
 #include "hx711.h"
-
 #define SHOW_MAX 2000
 
 Hx711 scale(A1, A0);
@@ -13,19 +9,17 @@ Hx711 scale(A1, A0);
 float max_force = 0.0f;
 bool applying_force = false;
 bool printMax = false;
-long startTime = 0;
 bool timing = false;
+long startTime = 0;
 
 void setup() {
 
-  Serial.begin(9600);
-  Serial.println("Scale test");
-  
+  Serial.begin(115200);  
   //Calibracion:
   scale.setReadTimes(32);
   scale.calibrate(8337205.0f, 0.0f, 8533790.0f, 1001.0f);
   //Fin calibracion
-  scale.setReadTimes(4);
+  scale.setReadTimes(1);
 }
 
 void loop() {
@@ -55,15 +49,15 @@ void loop() {
   max_force = max(force, max_force);
   //Desp
   Serial.print(force, 1);
-  Serial.println(" g");
+  Serial.print(" ");
   if(printMax){
     printMax = false;
-    Serial.println("----------------------------");
-    Serial.print("Max = ");
-    Serial.print(max_force);
-    Serial.println(" gr");
-    Serial.println("----------------------------");
+    Serial.println(max_force);
+    max_force = 0.0f;
   }
-  delay(200);
+  else{
+    Serial.println(0.0f);
+  }
+  delay(50);
 }
 

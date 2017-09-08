@@ -16,8 +16,9 @@ void setup() {
   //Calibracion:
   scale.setReadTimes(32);
   //long val = scale.averageValue();
-  scale.setScale(0.0050922f);
-  scale.setOffset(-42449.76f);
+  //scale.setScale(0.0050922f);
+  //scale.setOffset(-42449.76f);
+  scale.calibrate(8337205.0f, 0.0f, 8533790.0f, 1001.0f);
   //x=8337202.0 y = 0gramos
   //x=8533800.0 y = 1001gramos
 

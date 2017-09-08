@@ -85,3 +85,10 @@ float Hx711::getGram()
 void Hx711::setReadTimes(byte times){
   _read_times = times > 0 ? times : 1;
 }
+
+void Hx711::calibrate(float x1, float y1, float x2, float y2){
+  float m = (y2-y1)/(x2-x1);
+  float b = y2 - m*x2;
+  setScale(m);
+  setOffset(b);
+}

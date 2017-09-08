@@ -28,6 +28,7 @@ public:
 	void setScale(float scale = 0.0050922f);
   void setReadTimes(byte times);
 	float getGram();
+  void calibrate(float x1, float y1, float x2, float y2);
 
 private:
 	const uint8_t _pin_dout;
